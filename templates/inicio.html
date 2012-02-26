@@ -1,0 +1,22 @@
+{# inclui o template base.html #}
+{% extends "base.html" %}
+
+{# preenche o titulo da pagina que é passado para o template base atraves do 'block' titulo #}
+{% block titulo %}Lista de Autores{% endblock %}
+
+{# preenche o conteudo da pagina que é passado para o template base atraves do 'block' conteudo #}
+{% block conteudo %}
+<div class="module">
+<table>
+<caption><a href="" class="section">Informações Gerais</a></caption>
+		<tr>
+			<td><b>Data</b></td>
+			<th scope="row">{{ data|date:'D,  d / m / Y' }}</th>
+		</tr>
+		<tr>
+			<td><b>Usuário</b></td>
+			<th scope="row">{{request.user}}</th>
+		</tr>
+</table>
+</div>
+{% endblock %}

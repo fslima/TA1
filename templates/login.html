@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br" >
+<head>
+<title>Biblioteca Online</title>
+<link rel="stylesheet" type="text/css" href="/admin_media/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/admin_media/css/login.css" />
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/admin_media/css/ie.css" /><![endif]-->
+
+<meta name="robots" content="NONE,NOARCHIVE" />
+</head>
+<body class="login">
+{%if form.errors %}
+	{{ form.non_field_errors }}
+{% endif %}
+
+<div id="container">
+    <div id="header">
+        <div id="branding">
+		<h1 id="site-name">Tópicos Avançados | DITEX</h1>
+        </div>
+    </div>
+    <div id="content" class="colM">
+<div id="content-main">
+  <form action="" method="POST"> 
+  {% csrf_token %}
+	<table>
+		<tr>
+			<td>{{ form.username.label_tag }}</td>
+			<td>{{ form.username }}</td>
+		</tr>
+		<tr>
+			<td>{{ form.password.label_tag }}</td>
+			<td>{{ form.password }}</td>
+		</tr>
+		<tr>
+			<td><label>&nbsp;</label></td>
+			<td><button class="button" type="submit">login</button></td>
+		</tr>
+	</table>
+	
+  </form>
+
+  <script type="text/javascript">
+	document.getElementById('id_username').focus()
+  </script>
+</div>
+        <br class="clear" />
+    </div>
+</div>
+</body>
+</html>
