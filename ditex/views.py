@@ -478,7 +478,7 @@ def servico_exibir(request, objeto):
 
 def servico_cadastrar(request, objeto):
 	if str(objeto) == 'oportunidade':
-		arquivo = file('/home/fsouza/arquivo2')
+		arquivo = file('/opt/tpcavancados/jsonoportunidade')
 		teste = json.load(arquivo)
 		oportunidade = Oportunidade(
 				vaga = teste[0]['vaga'], tpoportunidade = teste[0]['tpoportunidade'],
@@ -487,17 +487,17 @@ def servico_cadastrar(request, objeto):
 				dtinicio = teste[0]['dtinicio'],
 				dtfim = teste[0]['dtfim'],
 				nrvagas = teste[0]['nrvagas'],
-				usuario = User.objects.get(pk = 3))
+				usuario = User.objects.get(pk = 1))
 		oportunidade.save()
 		return HttpResponseRedirect("/lista/"+str(objeto))
 	if str(objeto) == 'participante':
-		arquivo = file('/home/fsouza/jsonevento')
+		arquivo = file('/opt/tpcavancados/jsonevento')
 		teste = json.load(arquivo)
 		evento = Evento.objects.get(pk = teste[0]['evento'])
 		participante = Aluno.objects.get(pk = teste[0]['participante'])
 		evento.participante.add(participante)
 		evento.save()
-		return HttpResponseRedirect("/lista/"+str(objeto))
+		return HttpResponseRedirect("/exibe/evento/"+str(teste[0]['evento']))
 
 
 
