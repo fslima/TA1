@@ -1,0 +1,73 @@
+{# inclui o template base.html #}
+{% extends "base.html" %}
+
+{# preenche o titulo da pagina que é passado para o template base atraves do 'block' titulo #}
+{% block titulo %}Excluir {{objeto}}{% endblock %}
+
+{# preenche o conteudo da pagina que é passado para o template base atraves do 'block' conteudo #}
+{% block conteudo %}
+<h1>Confirmar Exclusão</h1>
+<div class="module">
+<table>
+<caption><a href="" class="section">Excluir {{ objeto|capfirst }}</a></caption>
+<form action="" method="POST"> 
+{% for campos in form %}
+{% ifnotequal campos.value form.curso.value %} 
+{% if campos.name = "empresa" %}
+		<tr>
+			<td scope="row"><b>{{campos.label_tag}}</b></td>
+			<th scope="row">{{objeto_para_deletar.empresa}}</th>
+		</tr>
+{% else %}{% if campos.name = "oportunidade" %}
+		<tr>
+			<td scope="row"><b>{{campos.label_tag}}</b></td>
+			<th scope="row">{{objeto_para_deletar.oportunidade}}</th>
+		</tr>
+		<tr>
+			<td scope="row"><b>Tipo da Oportunidade</b></td>
+			<th scope="row">{{objeto_para_deletar.oportunidade.tpoportunidade}}</th>
+		</tr>
+		<tr>
+			<td scope="row"><b>Empresa</b></td>
+			<th scope="row">{{objeto_para_deletar.oportunidade.empresa}}</th>
+		</tr>
+{% else %}{% if campos.name = "aluno" %}
+		<tr>
+			<td scope="row"><b>{{campos.label_tag}}</b></td>
+			<th scope="row">{{objeto_para_deletar.aluno}}</th>
+		</tr>
+{% else %}
+		<tr>
+			<td scope="row"><b>{{campos.label_tag}}</b></td>
+			<th scope="row">{{campos.value}}</th>
+		</tr>
+{% endif %}{% endif %}{% endif %}
+{% endifnotequal %}
+{% endfor %}
+</table>
+{% if membros %}
+<table>
+<caption><a href="" class="section">{{titulo_membros}}</a></caption>
+{%for membro in membros %}
+		<tr>	
+			<th scope="row">{{membro}}</th>
+			<td></td>
+		</tr>
+{% empty %}
+<tr>
+	<td><a href=""></td>
+	<td></td>
+	<th scope="row">Nenhum Evento Cadastrado</th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+</div>
+<table>
+		<tr>
+			<td><button class="button"type="submit">Excluir</td>
+			<td><a href="/lista/{{ objeto }}"><button class="button" type="reset">Voltar</button></a></td>
+		</tr>
+</table>
+</form>
+{% endblock %}

@@ -1,0 +1,40 @@
+{# inclui o template base.html #}
+{% extends "base.html" %}
+
+{# preenche o titulo da pagina que é passado para o template base atraves do 'block' titulo #}
+{% block titulo %}{{ titulo }}{% endblock %}
+
+{# preenche o conteudo da pagina que é passado para o template base atraves do 'block' conteudo #}
+{% block conteudo %}
+{% csrf_token %}
+<h1>{{ titulo }}</h1>
+<a href="/adiciona/{{ objeto }}" class="addlink">Adicionar {{ objeto|capfirst }}</a>     |
+<a href="/filtra/{{ objeto }}"><img src="/media/img/exibir.gif/" />Pesquisar {{ objeto|capfirst }}</a>
+<div class="module">
+<table>
+<caption><a href="/lista/{{ objeto }}" class="section">Alunos</a></caption>
+{%for registro in lista %}
+		<tr>
+			<td><a href="/exibe/{{ objeto }}/{{ registro.id }}/"><img src="/media/img/exibir.gif/" /></a></td>
+			<td><a href="/edita/{{ objeto }}/{{ registro.id }}/"><img src="/media/img/alterar.gif/" /></a></td>
+			<td><a href="/deleta/{{ objeto }}/{{ registro.id }}/"><img src="/media/img/delete.gif/" /></a></td>
+			<th scope="row">{{registro}} {% if registro.empresa %} ({{registro.empresa}}) {% endif %}
+			{% if registro.oportunidade.empresa %} ({{registro.oportunidade.empresa}}) {% endif %}</th>
+			{% if registro.participante %}
+				<td><a href="/edita/participantesdoevento/{{ registro.id }}/" class="addlink">Participante</a></td>
+			{% endif %}
+			{% if registro.curso %}
+				<td><a href="/edita/cursosdaoportunidade/{{ registro.id }}/" class="addlink">Relacionar Cursos</a></td>
+			{% endif %}
+		</tr>
+{% empty %}
+<tr>
+	<td><a href=""></td>
+	<td></td>
+	<th scope="row">{{ lista_vazia }}</th>
+</tr>
+{% endfor %}
+</table>
+</div>
+
+{% endblock %}

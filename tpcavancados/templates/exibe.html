@@ -1,0 +1,68 @@
+{# inclui o template base.html #}
+{% extends "base.html" %}
+
+{# preenche o titulo da pagina que é passado para o template base atraves do 'block' titulo #}
+{% block titulo %}Visualizar {{objeto}}{% endblock %}
+
+{# preenche o conteudo da pagina que é passado para o template base atraves do 'block' conteudo #}
+{% block conteudo %}
+{% if objeto.nome %}<h1>{{objeto.nome}}</h1>{% endif %}{% if objeto.vaga %}<h1>{{objeto.vaga}}</h1>{% endif %}
+{% if objeto.oportunidade and objeto.aluno  %}<h1>{{objeto.aluno}} >>> {{objeto.oportunidade.empresa}}</h1>{% endif %}
+<div class="module">
+<table>
+<caption><a href="" class="section">Informações Gerais</a></caption>
+{% for campos in form %}
+{% ifnotequal campos.value form.curso.value %} 
+{% if campos.name = "empresa" %}
+		<tr>
+			<td scope="row"><b>{{campos.label_tag}}</b></td>
+			<th scope="row">{{objeto.empresa}}</th>
+		</tr>
+{% else %}{% if campos.name = "oportunidade" %}
+		<tr>
+			<td scope="row"><b>{{campos.label_tag}}</b></td>
+			<th scope="row">{{objeto.oportunidade}}</th>
+		</tr>
+		<tr>
+			<td scope="row"><b>Tipo da Oportunidade</b></td>
+			<th scope="row">{{objeto.oportunidade.tpoportunidade}}</th>
+		</tr>
+		<tr>
+			<td scope="row"><b>Empresa</b></td>
+			<th scope="row">{{objeto.oportunidade.empresa}}</th>
+		</tr>
+{% else %}{% if campos.name = "aluno" %}
+		<tr>
+			<td scope="row"><b>{{campos.label_tag}}</b></td>
+			<th scope="row">{{objeto.aluno}}</th>
+		</tr>
+{% else %}
+		<tr>
+			<td scope="row"><b>{{campos.label_tag}}</b></td>
+			<th scope="row">{{campos.value}}</th>
+		</tr>
+{% endif %}{% endif %}{% endif %}
+{% endifnotequal %}
+{% endfor %}
+</table>
+{% if membros %}
+<table>
+<caption><a href="" class="section">{{titulo_membros}}</a></caption>
+{%for membro in membros %}
+		<tr>	
+			<th scope="row">{{membro}}</th>
+			<td></td>
+		</tr>
+{% empty %}
+<tr>
+	<td><a href=""></td>
+	<td></td>
+	<th scope="row">Nenhum Evento Cadastrado</th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+</div>
+
+
+{% endblock %}
