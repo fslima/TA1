@@ -24,6 +24,7 @@ O sistema pode ser acessado com o usuario e senha cadastrados durante a instala�
 Serviços Oferecidos
 ====================
 *Lista de Oportunidades Abertas*
+================================
 Requisitos:
 
 Não tem
@@ -34,6 +35,7 @@ Retorna:
 
 
 *Cadastrar Oportunidade*
+========================
 Requisitos:
 
 [{'empresa': int, 'descoportunidade': string, 'curso': int, 'tpoportunidade': String, 'vaga': String, 'dtfim': date, 'dtinicio': date, 'id': int, 'nrvagas': int}]
@@ -44,6 +46,7 @@ Não tem
 
 
 *Cadastrar Participante em Evento*
+==================================
 Requisitos:
 [{'evento': int, 'participante': int}]
 
