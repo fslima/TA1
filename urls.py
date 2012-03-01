@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.defaults import *
 from django.contrib.auth.views import *
 from django.contrib import admin
-from tpcavancados.ditex.views import *
+from TA1.ditex.views import *
 
 admin.autodiscover()
 
