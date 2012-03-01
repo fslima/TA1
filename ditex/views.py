@@ -469,7 +469,7 @@ def servico_exibir(request, objeto):
 	if str(objeto) == 'oportunidade':
 		titulo = 'Serviço Listar Oportunidades'	
 		oportunidades = []
-		arquivo = file('/home/fsouza/abertas')
+		arquivo = file('/opt/TA1/servicos externos/oportunidade.json')
 		teste = json.load(arquivo)
 		for x in range(len(teste)):
 			oportunidades.append(teste[x]['id'])
@@ -478,7 +478,7 @@ def servico_exibir(request, objeto):
 
 def servico_cadastrar(request, objeto):
 	if str(objeto) == 'oportunidade':
-		arquivo = file('/opt/tpcavancados/jsonoportunidade')
+		arquivo = file('/opt/TA1/servicos externos/oportunidade.json')
 		teste = json.load(arquivo)
 		oportunidade = Oportunidade(
 				vaga = teste[0]['vaga'], tpoportunidade = teste[0]['tpoportunidade'],
@@ -491,7 +491,7 @@ def servico_cadastrar(request, objeto):
 		oportunidade.save()
 		return HttpResponseRedirect("/lista/"+str(objeto))
 	if str(objeto) == 'participante':
-		arquivo = file('/opt/tpcavancados/jsonevento')
+		arquivo = file('/opt/TA1/evento.json')
 		teste = json.load(arquivo)
 		evento = Evento.objects.get(pk = teste[0]['evento'])
 		participante = Aluno.objects.get(pk = teste[0]['participante'])
@@ -499,7 +499,7 @@ def servico_cadastrar(request, objeto):
 		evento.save()
 		return HttpResponseRedirect("/exibe/evento/"+str(teste[0]['evento']))
 	if str(objeto) == 'curso':
-		arquivo = file('/opt/tpcavancados/jsoncurso')
+		arquivo = file('/opt/TA1/servicos externos/curso.json')
 		teste = json.load(arquivo)
 		for x in range(len(teste)):
 			curso = Curso(
@@ -509,7 +509,7 @@ def servico_cadastrar(request, objeto):
 			curso.save()
 		return HttpResponseRedirect("/lista/"+str(objeto))
 	if str(objeto) == 'aluno':
-		arquivo = file('/opt/tpcavancados/jsonaluno')
+		arquivo = file('/opt/TA1/servicos externos/aluno.json')
 		teste = json.load(arquivo)
 		for x in range(len(teste)):
 			aluno = Aluno(
@@ -524,7 +524,7 @@ def servico_cadastrar(request, objeto):
 			aluno.save()
 		return HttpResponseRedirect("/lista/"+str(objeto))
 	if str(objeto) == 'empresa':
-		arquivo = file('/opt/tpcavancados/jsonempresa')
+		arquivo = file('/opt/TA1/servicos externos/empresa.json')
 		teste = json.load(arquivo)
 		for x in range(len(teste)):
 			empresa = Empresa(
