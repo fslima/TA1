@@ -1,0 +1,21 @@
+{# inclui o template base.html #}
+{% extends "base.html" %}
+
+{# preenche o titulo da pagina que é passado para o template base atraves do 'block' titulo #}
+{% block titulo %}Adicionar {{ titulo }}{% endblock %}
+
+{# preenche o conteudo da pagina que é passado para o template base atraves do 'block' conteudo #}
+{% block conteudo %}
+<form action="" method="POST">
+	<h1>Adicionar {{ titulo }}</h1>
+	<font color='red'><b>{{ erro }}</b></font>
+	<table>
+		{{ form.as_table }}	
+		<tr>
+			<td><button class="button"type="submit">Adicionar</td>
+			<td><a href="/lista/{{ objeto }}"><button class="button" type="reset">Voltar</button></a></td>
+		</tr>
+	</table>
+</form>
+
+{% endblock %}
