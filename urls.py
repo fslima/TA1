@@ -18,7 +18,8 @@ urlpatterns = patterns('',
 	(r'^sair$', sair),
 #	(r'^logout$', logout_then_login, { 'login_url': '/login/' }),
 	(r'^inicio$', inicio),
-
+	(r'^servico$', servico),
+	
 	(r'^lista/(?P<objeto>\w+)$', lista),
 	(r'^adiciona/(?P<objeto>\w+)$', adiciona),
 	(r'^filtra/(?P<objeto>\w+)', filtra),
