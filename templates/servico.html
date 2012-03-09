@@ -1,0 +1,42 @@
+{# inclui o template base.html #}
+{% extends "base.html" %}
+
+{# preenche o titulo da pagina que é passado para o template base atraves do 'block' titulo #}
+{% block titulo %}{{ titulo }}{% endblock %}
+
+{# preenche o conteudo da pagina que é passado para o template base atraves do 'block' conteudo #}
+{% block conteudo %}
+{% csrf_token %}
+<h1>Serviços</h1> 
+<div class="module">
+<table>
+<caption><a href="/lista/{{ objeto }}" class="section">Serviços Disponíveis</a></caption>
+<tr>
+	<td><a href=""></td>
+	<td></td>
+	<th scope="row"><a href=/servico/cadastrar/curso>Serviço Cadastrar Curso</th>
+</tr>
+<tr>
+	<td><a href=""></td>
+	<td></td>
+	<th scope="row"><a href=/servico/cadastrar/aluno>Serviço Cadastrar Aluno</th>
+</tr>
+<tr>
+	<td><a href=""></td>
+	<td></td>
+	<th scope="row"><a href=/servico/cadastrar/empresa>Serviço Cadastrar Empresa</th>
+</tr>
+<tr>
+	<td><a href=""></td>
+	<td></td>
+	<th scope="row"><a href=/servico/cadastrar/oportunidade>Serviço Cadastrar Oportunidades</th>
+</tr>
+<tr>
+	<td><a href=""></td>
+	<td></td>
+	<th scope="row"><a href=/servico/oportunidades/abertas>Serviço Oportunidades Abertas</th>
+</tr>
+</table>
+</div>
+
+{% endblock %}

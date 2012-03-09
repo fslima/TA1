@@ -21,6 +21,10 @@ def inicio(request):
 	data = datetime.now()
 	return render_to_response('inicio.html', locals())
 
+@login_required
+def servico(request):
+	return render_to_response('servico.html', locals())
+
 def exibe(request, objeto, id_objeto):
 	if str(objeto) == 'aluno':
 		titulo = 'Aluno'
